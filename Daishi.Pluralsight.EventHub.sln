@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Pluralsight.EventHub", "Daishi.Pluralsight.EventHub\Daishi.Pluralsight.EventHub.csproj", "{795530E7-383C-4679-8416-DD62FA24ECE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Pluralsight.EventHub.DeviceEmulator", "Daishi.Pluralsight.EventHub.DeviceEmulator\Daishi.Pluralsight.EventHub.DeviceEmulator.csproj", "{5707EAA9-DBF8-4A12-82DA-815D80D33F04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Pluralsight.EventHub.DeviceMonitor", "Daishi.Pluralsight.EventHub.DeviceMonitor\Daishi.Pluralsight.EventHub.DeviceMonitor.csproj", "{14F8582D-6830-400E-AF26-03DACA1A68E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daishi.Pluralsight.EventHub.Core", "Daishi.Pluralsight.EventHub.Core\Daishi.Pluralsight.EventHub.Core.csproj", "{99C157E5-218D-43DF-AD81-BE6E4A0B02FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{795530E7-383C-4679-8416-DD62FA24ECE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{795530E7-383C-4679-8416-DD62FA24ECE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{795530E7-383C-4679-8416-DD62FA24ECE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{795530E7-383C-4679-8416-DD62FA24ECE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5707EAA9-DBF8-4A12-82DA-815D80D33F04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5707EAA9-DBF8-4A12-82DA-815D80D33F04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5707EAA9-DBF8-4A12-82DA-815D80D33F04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5707EAA9-DBF8-4A12-82DA-815D80D33F04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14F8582D-6830-400E-AF26-03DACA1A68E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F8582D-6830-400E-AF26-03DACA1A68E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F8582D-6830-400E-AF26-03DACA1A68E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F8582D-6830-400E-AF26-03DACA1A68E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C157E5-218D-43DF-AD81-BE6E4A0B02FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C157E5-218D-43DF-AD81-BE6E4A0B02FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C157E5-218D-43DF-AD81-BE6E4A0B02FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C157E5-218D-43DF-AD81-BE6E4A0B02FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
