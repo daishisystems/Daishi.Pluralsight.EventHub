@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ServiceBus.Messaging;
 
-namespace Daishi.Pluralsight.EventHub.DeviceMonitor
+namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
 {
     internal class TelemetryEventProcessor : IEventProcessor
     {

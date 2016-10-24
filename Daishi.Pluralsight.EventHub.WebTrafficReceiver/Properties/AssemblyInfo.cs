@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Daishi.Pluralsight.EventHub.DeviceEmulator")]
+[assembly: AssemblyTitle("Daishi.Pluralsight.EventHub.WebTrafficReceiver")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Daishi.Pluralsight.EventHub.DeviceEmulator")]
+[assembly: AssemblyProduct("Daishi.Pluralsight.EventHub.WebTrafficReceiver")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("5707eaa9-dbf8-4a12-82da-815d80d33f04")]
+[assembly: Guid("f45bace4-b210-4363-b9de-60efaafce7e1")]
 
 // Version information for an assembly consists of the following four values:
 //

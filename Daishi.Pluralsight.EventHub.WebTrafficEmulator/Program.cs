@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading;
 using Microsoft.ServiceBus.Messaging;
 
-namespace Daishi.Pluralsight.EventHub.DeviceEmulator
+namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
 {
     internal static class Program
     {
