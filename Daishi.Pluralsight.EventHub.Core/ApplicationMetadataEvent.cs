@@ -3,10 +3,10 @@
 namespace Daishi.Pluralsight.EventHub.Core
 {
     /// <summary>
-    ///     <see cref="MyEvent" /> is a simple, example event, containing metadata
+    ///     <see cref="ApplicationMetadataEvent" /> is an event that contains metadata
     ///     originating from an imaginary up-stream web application.
     /// </summary>
-    public class MyEvent
+    public class ApplicationMetadataEvent
     {
         /// <summary>
         ///     <see cref="IPAddress" /> is the IPv4 address associated with an up-stream
