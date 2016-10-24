@@ -7,8 +7,8 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
 {
     internal static class Program
     {
-        private const string EventHubName = "{Event Hub name}";
-        private const string ConnectionString = "{send connection string}";
+        private const string EventHubName = "telemetry";
+        private const string ConnectionString = "Endpoint=sb://shield.servicebus.windows.net/;SharedAccessKeyName=Admin;SharedAccessKey=8FyaeOiU8q8TxMtQ8ZRbBEaA/2so9lm2TSMRo7oYGaU=";
 
         private static void Main(string[] args)
         {

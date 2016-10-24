@@ -7,7 +7,7 @@ using Microsoft.ServiceBus.Messaging;
 
 namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
 {
-    internal class TelemetryEventProcessor : IEventProcessor
+    internal class WebTrafficEventProcessor : IEventProcessor
     {
         private Stopwatch _checkpointStopWatch;
 
