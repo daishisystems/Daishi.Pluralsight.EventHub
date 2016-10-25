@@ -25,38 +25,12 @@ namespace Daishi.Pluralsight.EventHub.Core
         ///     up-stream HTTP request originated.
         /// </summary>
         public Device Device { get; set; }
-    }
 
-    /// <summary>
-    ///     <see cref="Device" /> refers to a physical device, such as a phone, or
-    ///     tablet.
-    /// </summary>
-    [Flags]
-    public enum Device
-    {
-        /// <summary>
-        ///     <see cref="Unknown" /> represents a device whose type cannot be determined.
-        /// </summary>
-        Unknown = 0,
-
-        /// <summary>
-        ///     <see cref="PersonalComputer" /> represents any given PC.
-        /// </summary>
-        PersonalComputer = 1,
-
-        /// <summary>
-        ///     <see cref="Mac" /> represents any given Apple Mac.
-        /// </summary>
-        Mac = 2,
-
-        /// <summary>
-        ///     <see cref="Phone" /> represents a mobile phone.
-        /// </summary>
-        Phone = 4,
-
-        /// <summary>
-        ///     <see cref="Tablet" /> represents any given tablet device.
-        /// </summary>
-        Tablet = 8
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return $"{Device}: {IPAddress}";
+        }
     }
 }

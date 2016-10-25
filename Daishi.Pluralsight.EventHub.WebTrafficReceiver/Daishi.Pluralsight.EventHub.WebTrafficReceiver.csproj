@@ -89,6 +89,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Daishi.Pluralsight.EventHub.Core\Daishi.Pluralsight.EventHub.Core.csproj">
+      <Project>{99C157E5-218D-43DF-AD81-BE6E4A0B02FA}</Project>
+      <Name>Daishi.Pluralsight.EventHub.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

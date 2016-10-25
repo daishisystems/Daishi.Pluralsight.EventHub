@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Daishi.Pluralsight.EventHub.Core;
 using Microsoft.ServiceBus.Messaging;
+using Newtonsoft.Json;
 
 namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
 {
@@ -37,8 +39,11 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             {
                 var data = Encoding.UTF8.GetString(eventData.GetBytes());
 
-                Console.WriteLine("Message received.  Partition: '{0}', Data: '{1}'",
-                    context.Lease.PartitionId, data);
+                var applicationMetadataEvent =
+                    JsonConvert.DeserializeObject<ApplicationMetadataEvent>(data);
+
+                Console.WriteLine("Message received. Partition: '{0}', Event: '{1}'",
+                    context.Lease.PartitionId, applicationMetadataEvent);
             }
 
             //Call checkpoint every 5 minutes, so that worker can resume processing from 5 minutes back if it restarts.
