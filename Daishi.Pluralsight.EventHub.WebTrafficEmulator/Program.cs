@@ -56,9 +56,7 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
 
         /// <summary>
         ///     <see cref="SendRandomApplicationMetadataEvents" /> sends randomly-generated
-        ///     <see cref="ApplicationMetadataEvent" /> instances to Event Hub until the
-        ///     process is terminated, or a specified number of <see cref="Exception" />s
-        ///     occur.
+        ///     <see cref="ApplicationMetadataEvent" /> instances to Event Hub.
         /// </summary>
         private static void SendRandomApplicationMetadataEvents()
         {
@@ -81,9 +79,9 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
             var random = new Random();
             var values = Enum.GetValues(typeof (Device));
 
-            var exceptionCount = 0;
+            const int eventCount = 100;
 
-            while (exceptionCount < 10)
+            for (var i = 0; i < eventCount; i++)
             {
                 try
                 {
@@ -91,24 +89,26 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
                     {
                         IPAddress = GenerateRandomIPAddress(random),
                         Time = DateTime.UtcNow,
-                        Device = (Device) values.GetValue(random.Next(values.Length))
+                        Device = (Device) values.GetValue(random.Next(1, values.Length))
                     };
-
+                    // todo: Split into groups of 25, each with a specific Partition Key.
                     SendApplicationMetadata(eventHubClient, applicationMetadata);
 
-                    Console.WriteLine("Sent metadata pertaining to IP "
-                                      + applicationMetadata.IPAddress + "!");
+                    Console.WriteLine("Sent event: {0}", applicationMetadata);
                 }
                 catch (Exception exception)
                 {
-                    exceptionCount++;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("{0} > Exception: {1}", DateTime.Now, exception.Message);
                     Console.ResetColor();
                 }
 
-                Task.Delay(100);
+                Task.Delay(10);
             }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sent {0} events.", eventCount);
+            Console.ResetColor();
         }
     }
 }

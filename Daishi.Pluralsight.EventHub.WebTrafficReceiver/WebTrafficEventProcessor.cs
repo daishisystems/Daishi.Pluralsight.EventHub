@@ -21,6 +21,7 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             {
                 await context.CheckpointAsync();
             }
+            Console.ReadLine();
         }
 
         Task IEventProcessor.OpenAsync(PartitionContext context)
@@ -29,6 +30,8 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
                 context.Lease.PartitionId, context.Lease.Offset);
             _checkpointStopWatch = new Stopwatch();
             _checkpointStopWatch.Start();
+
+            EventCounter.Instance.Stopwatch.Start();
             return Task.FromResult<object>(null);
         }
 
@@ -42,8 +45,20 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
                 var applicationMetadataEvent =
                     JsonConvert.DeserializeObject<ApplicationMetadataEvent>(data);
 
+                EventCounter.Instance.EventCount++;
+
                 Console.WriteLine("Message received. Partition: '{0}', Event: '{1}'",
                     context.Lease.PartitionId, applicationMetadataEvent);
+            }
+
+            if (EventCounter.Instance.EventCount.Equals(100))
+            {
+                EventCounter.Instance.Stopwatch.Stop();
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("The process took {0} ms to complete.",
+                    EventCounter.Instance.Stopwatch.ElapsedMilliseconds);
+                Console.ResetColor();
             }
 
             //Call checkpoint every 5 minutes, so that worker can resume processing from 5 minutes back if it restarts.
@@ -54,4 +69,5 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             }
         }
     }
+
 }
