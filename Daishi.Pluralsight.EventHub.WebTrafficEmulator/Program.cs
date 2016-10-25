@@ -18,6 +18,12 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
             SendRandomApplicationMetadataEvents();
         }
 
+        /// <summary>
+        ///     <see cref="GenerateRandomIPAddress" /> returns a randomly-generated IP
+        ///     address in string-format.
+        /// </summary>
+        /// <param name="random"></param>
+        /// <returns>A randomly-generated IP address in string-format.</returns>
         private static string GenerateRandomIPAddress(Random random)
         {
             return $"{random.Next(0, 255)}." +
@@ -26,16 +32,34 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
                    $"{random.Next(0, 255)}";
         }
 
+        /// <summary>
+        ///     <see cref="SendApplicationMetadata" /> sends
+        ///     <see cref="applicationMetadataEvent" /> to the Event Hub instance
+        ///     associated with <see cref="eventHubClient" />.
+        /// </summary>
+        /// <param name="eventHubClient">
+        ///     <see cref="eventHubClient" /> is the Event Hub client proxy.
+        /// </param>
+        /// <param name="applicationMetadataEvent">
+        ///     <see cref="ApplicationMetadataEvent" /> is an event that contains metadata
+        ///     originating from an imaginary up-stream web application.
+        /// </param>
         private static void SendApplicationMetadata(EventHubClient eventHubClient,
-            ApplicationMetadataEvent applicationMetadata)
+            ApplicationMetadataEvent applicationMetadataEvent)
         {
-            var serialisedApplicationMetadata = JsonConvert.SerializeObject(applicationMetadata);
+            var serialisedApplicationMetadata = JsonConvert.SerializeObject(applicationMetadataEvent);
 
             var eventData = new EventData(Encoding.UTF8.GetBytes(serialisedApplicationMetadata));
 
             eventHubClient.Send(eventData);
         }
 
+        /// <summary>
+        ///     <see cref="SendRandomApplicationMetadataEvents" /> sends randomly-generated
+        ///     <see cref="ApplicationMetadataEvent" /> instances to Event Hub until the
+        ///     process is terminated, or a specified number of <see cref="Exception" />s
+        ///     occur.
+        /// </summary>
         private static void SendRandomApplicationMetadataEvents()
         {
             EventHubClient eventHubClient;
