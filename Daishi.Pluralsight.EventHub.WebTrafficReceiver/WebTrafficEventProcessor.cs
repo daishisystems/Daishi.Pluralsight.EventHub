@@ -31,13 +31,16 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             _checkpointStopWatch = new Stopwatch();
             _checkpointStopWatch.Start();
 
-            EventCounter.Instance.Stopwatch.Start();
             return Task.FromResult<object>(null);
         }
 
         async Task IEventProcessor.ProcessEventsAsync(PartitionContext context,
             IEnumerable<EventData> messages)
         {
+            if (!EventCounter.Instance.Stopwatch.IsRunning)
+            {
+                EventCounter.Instance.Stopwatch.Start();
+            }
             foreach (var eventData in messages)
             {
                 var data = Encoding.UTF8.GetString(eventData.GetBytes());
@@ -51,13 +54,17 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
                     context.Lease.PartitionId, applicationMetadataEvent);
             }
 
-            if (EventCounter.Instance.EventCount.Equals(100))
+            if (EventCounter.Instance.EventCount.Equals(100)) // todo: Change to 25 when scaling out.
             {
                 EventCounter.Instance.Stopwatch.Stop();
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("The process took {0} ms to complete.",
                     EventCounter.Instance.Stopwatch.ElapsedMilliseconds);
+
+                EventCounter.Instance.EventCount = 0;
+                EventCounter.Instance.Stopwatch.Reset();
+
                 Console.ResetColor();
             }
 

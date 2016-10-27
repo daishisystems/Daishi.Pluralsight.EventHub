@@ -10,8 +10,8 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             try
             {
                 const string eventHubConnectionString =
-                    "Endpoint=sb://shield.servicebus.windows.net/;SharedAccessKeyName=Admin;SharedAccessKey=8FyaeOiU8q8TxMtQ8ZRbBEaA/2so9lm2TSMRo7oYGaU=";
-                const string eventHubName = "telemetry";
+                    "Endpoint=sb://shield.servicebus.windows.net/;SharedAccessKeyName=Admin;SharedAccessKey=TcvQArcvlzlyiUXnaWfnFwisb3O8WGh1VxiyG+VwvRM=";
+                const string eventHubName = "applicationmetadata";
                 const string storageAccountName = "aegisanalytics";
                 const string storageAccountKey =
                     "vXKCLoUsia4HMHBSf1Jx4YzbKMkbk9Hex5kCVgTqD0thQHKdj6uNQsBzHpPp4uOsJ36b/6YYUXAMn/qVv/gOjA==";
