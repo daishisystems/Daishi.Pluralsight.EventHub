@@ -21,7 +21,6 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             {
                 await context.CheckpointAsync();
             }
-            Console.ReadLine();
         }
 
         Task IEventProcessor.OpenAsync(PartitionContext context)
@@ -54,7 +53,8 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
                     context.Lease.PartitionId, applicationMetadataEvent);
             }
 
-            if (EventCounter.Instance.EventCount.Equals(100)) // todo: Change to 25 when scaling out.
+            // todo: Change to 25 when scaling out. Use app-startup parameters.
+            if (EventCounter.Instance.EventCount.Equals(25))
             {
                 EventCounter.Instance.Stopwatch.Stop();
 
