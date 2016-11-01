@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
-using System.Threading.Tasks;
 using Daishi.Pluralsight.EventHub.Core;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
@@ -99,11 +98,11 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
             var random = new Random();
             var values = Enum.GetValues(typeof (Device));
 
-            const int eventCount = 25;
+            const int eventCount = 250;
 
-            foreach (var partitionKey in _partitionKeys)
+            for (var j = 0; j < eventCount; j++)
             {
-                for (var j = 0; j < eventCount; j++)
+                foreach (var partitionKey in _partitionKeys)
                 {
                     try
                     {
@@ -122,15 +121,12 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
                         Console.WriteLine("{0} > Exception: {1}", DateTime.Now, exception.Message);
                         Console.ResetColor();
                     }
-
-                    Task.Delay(10);
                 }
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Sent {0} events to {1}.", eventCount, partitionKey);
-                Console.ResetColor();
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sent {0} events.", eventCount * _partitionKeys.Count);
+            Console.ResetColor();
             Console.ReadLine();
         }
     }

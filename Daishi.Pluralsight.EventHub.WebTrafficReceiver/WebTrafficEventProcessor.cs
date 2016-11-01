@@ -54,7 +54,7 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             }
 
             // todo: Change to 25 when scaling out. Use app-startup parameters.
-            if (EventCounter.Instance.EventCount.Equals(25))
+            if (EventCounter.Instance.EventCount.Equals(1000))
             {
                 EventCounter.Instance.Stopwatch.Stop();
 
