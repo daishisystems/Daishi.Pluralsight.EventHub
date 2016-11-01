@@ -125,7 +125,7 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficEmulator
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Sent {0} events.", eventCount * _partitionKeys.Count);
+            Console.WriteLine("Sent {0} events.", eventCount*_partitionKeys.Count);
             Console.ResetColor();
             Console.ReadLine();
         }
