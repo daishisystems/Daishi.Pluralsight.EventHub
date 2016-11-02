@@ -36,10 +36,17 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
         async Task IEventProcessor.ProcessEventsAsync(PartitionContext context,
             IEnumerable<EventData> messages)
         {
+            #region Start the stop-watch
+
             if (!EventCounter.Instance.Stopwatch.IsRunning)
             {
                 EventCounter.Instance.Stopwatch.Start();
             }
+
+            #endregion
+
+            #region Read each event
+
             foreach (var eventData in messages)
             {
                 var data = Encoding.UTF8.GetString(eventData.GetBytes());
@@ -53,7 +60,10 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
                     context.Lease.PartitionId, applicationMetadataEvent);
             }
 
-            // todo: Change to 25 when scaling out. Use app-startup parameters.
+            #endregion
+
+            #region Stop the stop-watch and display elapsed time
+
             if (EventCounter.Instance.EventCount.Equals(1000))
             {
                 EventCounter.Instance.Stopwatch.Stop();
@@ -68,13 +78,17 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
                 Console.ResetColor();
             }
 
-            //Call checkpoint every 5 minutes, so that worker can resume processing from 5 minutes back if it restarts.
+            #endregion
+
+            #region Create a checkpoint
+
             if (_checkpointStopWatch.Elapsed > TimeSpan.FromMinutes(5))
             {
                 await context.CheckpointAsync();
                 _checkpointStopWatch.Restart();
             }
+
+            #endregion
         }
     }
-
 }
