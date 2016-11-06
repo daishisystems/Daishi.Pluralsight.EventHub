@@ -22,6 +22,7 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
                 var eventProcessorHost = new EventProcessorHost(eventProcessorHostName, eventHubName,
                     EventHubConsumerGroup.DefaultGroupName, eventHubConnectionString, storageConnectionString);
                 Console.WriteLine("Registering EventProcessor...");
+
                 var options = new EventProcessorOptions();
                 options.ExceptionReceived += (sender, e) => { Console.WriteLine(e.Exception); };
                 eventProcessorHost.RegisterEventProcessorAsync<WebTrafficEventProcessor>(options).Wait();
