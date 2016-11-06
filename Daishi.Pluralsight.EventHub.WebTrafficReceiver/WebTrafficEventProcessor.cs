@@ -13,16 +13,6 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
     {
         private Stopwatch _checkpointStopWatch;
 
-        async Task IEventProcessor.CloseAsync(PartitionContext context, CloseReason reason)
-        {
-            Console.WriteLine("Processor Shutting Down. Partition '{0}', Reason: '{1}'.",
-                context.Lease.PartitionId, reason);
-            if (reason == CloseReason.Shutdown)
-            {
-                await context.CheckpointAsync();
-            }
-        }
-
         Task IEventProcessor.OpenAsync(PartitionContext context)
         {
             Console.WriteLine("SimpleEventProcessor initialized.  Partition: '{0}', Offset: '{1}'",
@@ -31,6 +21,16 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             _checkpointStopWatch.Start();
 
             return Task.FromResult<object>(null);
+        }
+
+        async Task IEventProcessor.CloseAsync(PartitionContext context, CloseReason reason)
+        {
+            Console.WriteLine("Processor Shutting Down. Partition '{0}', Reason: '{1}'.",
+                context.Lease.PartitionId, reason);
+            if (reason == CloseReason.Shutdown)
+            {
+                await context.CheckpointAsync();
+            }
         }
 
         async Task IEventProcessor.ProcessEventsAsync(PartitionContext context,
