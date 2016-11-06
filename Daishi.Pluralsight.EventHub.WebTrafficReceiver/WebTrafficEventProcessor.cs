@@ -64,7 +64,7 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
 
             #region Stop the stop-watch and display elapsed time
 
-            if (EventCounter.Instance.EventCount.Equals(1000))
+            if (EventCounter.Instance.EventCount.Equals(500))
             {
                 EventCounter.Instance.Stopwatch.Stop();
 

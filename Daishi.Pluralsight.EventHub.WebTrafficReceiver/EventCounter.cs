@@ -5,7 +5,7 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
 {
     public sealed class EventCounter
     {
-        private static readonly Lazy<EventCounter> Lazy =
+        private static readonly Lazy<EventCounter> lazy =
             new Lazy<EventCounter>(() => new EventCounter());
 
         private volatile int _eventCount;
@@ -15,7 +15,7 @@ namespace Daishi.Pluralsight.EventHub.WebTrafficReceiver
             Stopwatch = new Stopwatch();
         }
 
-        public static EventCounter Instance => Lazy.Value;
+        public static EventCounter Instance => lazy.Value;
 
         public int EventCount {
             get { return _eventCount; }
